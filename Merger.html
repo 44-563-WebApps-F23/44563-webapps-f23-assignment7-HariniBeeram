@@ -9,11 +9,11 @@
     .flex-container {
       display: flex;
       flex-direction: row;
-      background-color: rgba(186, 7, 246, 0.099);
+      background-color: red;
     }
 
     .flex-container > div {
-      background-color: #a207f5;
+      background-color: #f1f1f1;
       margin: 10px;
       padding: 20px;
       font-size: 30px;
@@ -23,7 +23,7 @@
     @media (max-width: 600px) {
       .flex-container {
         flex-direction: column;
-        background-color: rgb(247, 71, 7);
+        background-color: green;
       }
     }
   </style>
@@ -52,9 +52,6 @@
   <p>Press the button to remove the middle element from the container.</p>
   <button onclick="remove()">Remove middle</button>
 
-  <p>Press the button to add an element at the front of the container.</p>
-  <input type="text" id="newItemFront" placeholder="Enter item text">
-  <button onclick="addFront()">Add front</button>
 
   <p>Press the button to swap two random elements in the container.</p>
   <button onclick="swap()">Swap</button>
@@ -99,38 +96,21 @@
     }
   }
 
-  function addFront() {
-    const inputText = document.getElementById('newItemFront').value;
-    if (inputText.trim() !== '') {
-      const newElement = document.createElement('div');
-      newElement.innerHTML = inputText;
-      newElement.className = 'merger';
-      const container = document.getElementById('target');
-      container.insertBefore(newElement, container.firstChild);
-    }
-  }
-
   function swap() {
     const mergerItems = document.getElementsByClassName('merger');
     const length = mergerItems.length;
-
     if (length >= 2) {
       const index1 = Math.floor(Math.random() * length);
       let index2 = Math.floor(Math.random() * length);
-
       // Ensure index2 is different from index1
       while (index2 === index1) {
         index2 = Math.floor(Math.random() * length);
       }
-
       const parent = document.getElementById('target');
-
       const item1 = mergerItems[index1];
       const item2 = mergerItems[index2];
-
       const item1Next = item1.nextSibling;
       const item2Next = item2.nextSibling;
-
       parent.insertBefore(item1, item2Next);
       parent.insertBefore(item2, item1Next);
     }
